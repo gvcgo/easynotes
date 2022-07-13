@@ -3,6 +3,7 @@ import * as vscode from 'vscode';
 import { SyncFiles } from './tools';
 import fs = require("fs");
 import path = require("path");
+import { resolve } from 'path';
 
 export class Config implements ToolConfig {
     public webdavUrl: string;
@@ -65,20 +66,27 @@ export function loadConfigFile(workspaceFolders: any) :Config {
     });
 };
 
-function pushNoteFiles(conf: ToolConfig) {
+function sleep(ms: number) {
+    return new Promise(resolve=>setTimeout(resolve, ms));
+};
+
+async function pushNoteFiles(conf: ToolConfig) {
     let cnf = new SyncFiles(conf);
-    cnf.createRootDir();
-    cnf.isVersionExists();
+    let flag: boolean = await cnf.createRootDir();
+    if (flag) {
+        await sleep(2000);
+    };
+    await cnf.isVersionExists();
     cnf.createVersion(true);
-    cnf.pushWalkDirs(conf.localRoot);
-    cnf.deleteRemoteFiles(conf.remoteRoot);
+    await cnf.pushWalkDirs(conf.localRoot);
+    await cnf.deleteRemoteFiles(conf.remoteRoot);
     vscode.window.showInformationMessage("push file completed!"); 
 };
 
-function pullhNoteFiles(conf: ToolConfig) {
+async function pullhNoteFiles(conf: ToolConfig) {
     let cnf = new SyncFiles(conf);
-    cnf.pullWalkDirs(conf.remoteRoot);
-    cnf.deleteLocalFiles(conf.localRoot);
+    await cnf.pullWalkDirs(conf.remoteRoot);
+    await cnf.deleteLocalFiles(conf.localRoot);
     vscode.window.showInformationMessage("pull file completed!");
 };
 

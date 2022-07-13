@@ -36,10 +36,12 @@ export class SyncFiles{
         
     }
 
-   public async createRootDir() :Promise<void> {
+   public async createRootDir() :Promise<boolean> {
         if (!(await this.client.exists(this.remoteRoot))) {
             await this.client.createDirectory(this.remoteRoot);
-        }
+            return true;
+        };
+        return false;
    };
 
    public async isVersionExists(): Promise<void> {
