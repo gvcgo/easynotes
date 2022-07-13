@@ -3,7 +3,6 @@ import * as vscode from 'vscode';
 import { SyncFiles } from './tools';
 import fs = require("fs");
 import path = require("path");
-import { resolve } from 'path';
 
 export class Config implements ToolConfig {
     public webdavUrl: string;
