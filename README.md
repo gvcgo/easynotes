@@ -1,4 +1,10 @@
 ---------------------------
+## EasyNotes Introduction
+---------------------------
+EasyNotes is a vscode plugin for storing your local notes files to remote webdav server more conveniently!
+It will automatically walk through the local folder defined in config file.
+
+---------------------------
 ## EasyNotes Usage
 ---------------------------
 
