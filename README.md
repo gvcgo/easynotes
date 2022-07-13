@@ -35,3 +35,8 @@ pull remote files to local folder;
 - "password": "***"
 - "localRoot": "e:\\project\\js\\test\\mynote"
 - "remoteRoot": "/mynote"
+
+------------------
+### 中文图文教程
+------------------
+[点击跳转](https://github.com/moqsien/easynotes/blob/main/usage.md)
